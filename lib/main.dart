@@ -61,83 +61,96 @@ class _CounterWidgetState extends State<CounterWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Rocket Launch Controller!!'),
-      ),
-      //set up the widget alignement
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-            child: Container(
-              color: Colors.blue,
-              child: Text(
-                //to displays current number
-                '$_counter',
-                style: TextStyle(fontSize: 50.0),
+    return Container( 
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/sky.jpg'),
+          fit: BoxFit.cover,
+          ),
+        ),
+      child:  Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          title: const Text('Rocket Launch Controller!!'),
+        ),
+        //set up the widget alignement
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Center(
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical:20, horizontal: 23),
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius :BorderRadius.circular(24),
+                ),
+                child: Text(
+                  //to displays current number
+                  '$_counter',
+                  style: TextStyle(fontSize: 50.0),
+                ),
               ),
             ),
-          ),
-          Slider(
-            min: 0,
-            max: 100,
-            value: _counter.toDouble(),
-            onChanged: (double value) {
-              setState(() {
-                _counter = value.toInt();
-              });
-            },
-            activeColor: Colors.blue,
-            inactiveColor: Colors.red,
-          ),
-          ElevatedButton(
-            onPressed: () {
-              // Action to be performed when the button is pressed
-              print('Rocket Launched with power $_counter!');
-            },
-            child: const Text('Launch Rocket'),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Expanded(child:
-              ElevatedButton(
-                onPressed: _ignite,
-                child: const Text('Ignite +'),
-              ),
-              ),
-              const SizedBox(width: 20),
-              Expanded(child:
-              ElevatedButton(
-                onPressed: _decrement, 
-                child: const Text('Decrement -')
-              ),
-              ),
-              const SizedBox(width: 20),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Expanded(child:
-              ElevatedButton(
-                onPressed: _abort,
-                child: const Text('Abort'),
-              ),
-              ),
-              const SizedBox(width: 20),
-              Expanded(child:
-              ElevatedButton(
-                onPressed: _reset,
-                child: const Text('Reset'),
-              ),
-              ),
-              const SizedBox(width: 20),
-            ],
-          ),
-        ],
-      ),
+            Slider(
+              min: 0,
+              max: 100,
+              value: _counter.toDouble(),
+              onChanged: (double value) {
+                setState(() {
+                  _counter = value.toInt();
+                });
+              },
+              activeColor: Colors.blue,
+              inactiveColor: Colors.red,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                // Action to be performed when the button is pressed
+                print('Rocket Launched with power $_counter!');
+              },
+              child: const Text('Launch Rocket'),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(child:
+                ElevatedButton(
+                  onPressed: _ignite,
+                  child: const Text('Ignite +'),
+                ),
+                ),
+                const SizedBox(width: 20),
+                Expanded(child:
+                ElevatedButton(
+                  onPressed: _decrement, 
+                  child: const Text('Decrement -')
+                ),
+                ),
+                const SizedBox(width: 20),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(child:
+                ElevatedButton(
+                  onPressed: _abort,
+                  child: const Text('Abort'),
+                ),
+                ),
+                const SizedBox(width: 20),
+                Expanded(child:
+                ElevatedButton(
+                  onPressed: _reset,
+                  child: const Text('Reset'),
+                ),
+                ),
+                const SizedBox(width: 20),
+              ],
+            ),
+          ],
+        ),
+      )
     );
   }
 }
